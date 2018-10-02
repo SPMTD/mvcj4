@@ -24,8 +24,9 @@
 <body>
     <div id="app">
         @include('includes.header')
-
-        @yield('content')
+        <div class="container">
+            @yield('content')
+        </div>        
     </div>
 </body>
 </html>
