@@ -21,6 +21,10 @@
     <section class="row posts">
         <div class="col-md-6 col-md-offset-3">
             <header><h3> What other people are saying... </h3></header>
+            @foreach($posts as $post)
+
+            @endforeach
+
             <article class="post">
                 <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt perferendis perspiciatis incidunt, similique suscipit nostrum quis.
                      Aliquam labore, vitae doloremque qui ab dicta accusamus explicabo corporis quaerat, alias, magni tempore.</p>
@@ -35,20 +39,6 @@
                     <a href="#">Delete</a>
                 </div>
             </article>
-            <article class="post">
-                    <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt perferendis perspiciatis incidunt, similique suscipit nostrum quis.
-                         Aliquam labore, vitae doloremque qui ab dicta accusamus explicabo corporis quaerat, alias, magni tempore.</p>
-                    <div class="info">
-                        Posted by ... on .. ... ....
-                    </div>
-                    <div class="interaction">
-                        <a href="#">Like</a>
-                        <a href="#">Dislike</a>
-                        
-                        <a href="#">Edit</a>
-                        <a href="#">Delete</a>
-                    </div>
-                </article>
         </div>
     </section>
 @endsection
