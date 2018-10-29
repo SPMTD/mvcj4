@@ -1,15 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('includes.message-block')
     <section class="row new-post">
         <div class="col-md-6 col-md-offset-3">
             <header><h3>What do you have to say?</h3></header>
 
-            <form action="">
+        <form action="{{  route('post.create')  }}" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                    <textarea class="form-control" name="new-post" id="new-post" rows="5" placeholder="Type something here!"></textarea>
+                    <input class="form-control" name="title" id="new-post" placeholder="Title">
+                    <label for="image">Upload an image here!</label> 
+                    <input class="form-control" type="file" name="filename" id="image">
                 </div>
                 <button type="submit" class="btn btn-primary">Create</button>
+                <input type="hidden" value="{{ Session::token() }} " name="_token">
             </form>
         </div>
     </section>

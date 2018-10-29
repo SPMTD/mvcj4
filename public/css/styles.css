@@ -49,3 +49,28 @@ html, body {
     color: #aaaaaa;
     font-style: italic;
 }
+
+.error {
+    background-color: #da515a;
+    color: white;
+    border: 1px solid red;
+    border-radius: 15px;
+    width: 50vw;
+    height: 7.5vh;
+    text-align: center;
+}
+
+.error ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.succes {
+    background-color: #54aa54;
+    color: white;
+    border-radius: 15px;
+    width: 50vw;
+    height: 7.5vh;
+    text-align: center;
+}
