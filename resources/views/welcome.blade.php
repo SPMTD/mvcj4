@@ -22,23 +22,45 @@
         <div class="col-md-6 col-md-offset-3">
             <header><h3> What other people are saying... </h3></header>
             @foreach($posts as $post)
-
+                <article class="post">
+                <p>{{  $post->title  }}</p>
+                    <div class="info">
+                        Posted by {{  $post->user->name  }} on {{  $post->created_at  }}
+                    </div>
+                    <div class="interaction">
+                        <a href="#">Like</a>
+                        <a href="#">Dislike</a>
+                        @if(Auth::user() == $post->user)
+                            <a data-toggle="modal" data-target="#edit-modal" href="#" data={{  $post->title }}>Edit</a>
+                            <a href="{{  route('post.delete', ['post_id' => $post->id])  }}">Delete</a>
+                        @endif
+                    </div>
+                </article>
             @endforeach
-
-            <article class="post">
-                <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt perferendis perspiciatis incidunt, similique suscipit nostrum quis.
-                     Aliquam labore, vitae doloremque qui ab dicta accusamus explicabo corporis quaerat, alias, magni tempore.</p>
-                <div class="info">
-                    Posted by ... on .. ... ....
-                </div>
-                <div class="interaction">
-                    <a href="#">Like</a>
-                    <a href="#">Dislike</a>
-
-                    <a href="#">Edit</a>
-                    <a href="#">Delete</a>
-                </div>
-            </article>
         </div>
     </section>
+
+    <div class="modal" tabindex="-1" role="dialog" id="edit-modal">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Edit Post</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                      <label for="post-title">Edit the post</label>
+                      <input class="form-control" name="title" id="new-post" value= {{ $post->title }}>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
 @endsection
