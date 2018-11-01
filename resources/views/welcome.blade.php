@@ -23,7 +23,7 @@
             <header><h3> What other people are saying... </h3></header>
             @foreach($posts as $post)
                 <article class="post">
-                <p>{{  $post->title  }}</p>
+                <p class="postTitle">{{  $post->title  }}</p>
                     <div class="info">
                         Posted by {{  $post->user->name  }} on {{  $post->created_at  }}
                     </div>
@@ -31,7 +31,7 @@
                         <a href="#">Like</a>
                         <a href="#">Dislike</a>
                         @if(Auth::user() == $post->user)
-                            <a data-toggle="modal" data-target="#edit-modal" href="#" data={{  $post->title }}>Edit</a>
+                            <a id="edit" data-toggle="modal" data-target="#edit-modal" href="#">Edit</a>
                             <a href="{{  route('post.delete', ['post_id' => $post->id])  }}">Delete</a>
                         @endif
                     </div>
@@ -52,7 +52,7 @@
                 <div class="modal-body">
                   <div class="form-group">
                       <label for="post-title">Edit the post</label>
-                      <input class="form-control" name="title" id="new-post" value= {{ $post->title }}>
+                      <input class="form-control" name="title" id="post-title">
                   </div>
                 </div>
                 <div class="modal-footer">
