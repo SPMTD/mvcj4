@@ -8,10 +8,10 @@
     <section class="row new-post">
         <div class="col-md-6 col-md-offset-3">
             <header><h3>Your account settings</h3></header>
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="{{  route('settings.save')}}" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name">Name</label>
-                <input type="text" name="name" class="form-control" value="{{  $user->name  }}">
+                <input type="text" name="name" class="form-control" value="{{  $user->name  }}" id="name">
                 </div>
                 <div class="form-group"> 
                     <label for="image">Image</label>
@@ -22,4 +22,11 @@
             </form>
         </div>
     </section>
+    @if(Storage::disk('local')->hasFile($user->id. '_'))
+        <section class="row new-post">
+            <div class="col-md-6 col-md-offset-3">
+                <img src="{{  route('settings.image', ['filename' => $user->id . '_'])  }}">
+            </div>
+        </section>
+    @endif
 @endsection

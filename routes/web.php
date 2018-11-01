@@ -31,3 +31,18 @@ Route::post('/edit', [
     'uses' => 'PostController@postEditPost',
     'as' =>'edit'
 ])->middleware('auth');
+
+Route::get('/settings', [
+    'uses' => 'UserController@getSettings',
+    'as' => 'settings'
+])->middleware('auth');
+
+Route::post('/updatesettings', [
+    'uses' => 'UserController@postSaveSettings',
+    'as' => 'settings.save'
+]);
+
+Route::get('/userimage/{filename}', [
+    'uses' => 'UserController@getUserImage',
+    'as' => 'settings.image'
+]);
