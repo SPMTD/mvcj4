@@ -26,3 +26,8 @@ Route::get('/delete-post/{post_id}', [
     'uses' => 'PostController@getDeletePost',
     'as' => 'post.delete'
 ])->middleware('auth');
+
+Route::post('/edit', [
+    'uses' => 'PostController@postEditPost',
+    'as' =>'edit'
+])->middleware('auth');

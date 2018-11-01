@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Http\Controllers\Log;
+use App\Http\Controllers\Input;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,9 +34,23 @@ class PostController extends Controller
         
         $request->user()->posts()->save($post);
         if($request->user()->posts()->save($post)) {
-            $message = 'Ur image has been uploaded!';
+            $message = 'Your post has been uploaded!';
         }
         return redirect()->route('welcome')->with(['message' => $message]);
+    }
+
+    public function postEditPost(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+        $post = Post::find($request['postId']);
+        if(Auth::user() != $post->user) {
+            return redirect()->back();
+        }
+        $post->title = $request['title'];
+        $post->update();
+        return response()->json(['new_title' => $post->title ], 200);
     }
 
     public function getDeletePost($post_id)
