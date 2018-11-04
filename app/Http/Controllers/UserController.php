@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
 class UserController extends Controller {
+    
     public function getSettings()
     {
         return view('settings', ['user' => Auth::user()]);
@@ -31,12 +32,13 @@ class UserController extends Controller {
         if($file) {
             Storage::disk('local')->put($filenameEdit, File::get($file));
         }
+        
         return redirect()->route('settings');
     }
 
     public function getUserImage($filename)
     {
-        $file = Storage::disk('local')->get('filename');
+        $file = Storage::disk('local')->get($filename);
         return new Response($file, 200);
     }
 }

@@ -15,13 +15,32 @@ $(document).ready(function() {
         // console.log();
         $.ajax({
             method: 'POST',
-            url: url,
+            url: urlEdit,
             data: { title: $('#post-title').val(), postId: postId, _token: token }
         })
             .done(function(msg) {
                 $(postTitleElement).text(msg['new_title']);
                 $('#edit-modal').modal('hide');
                 $('.modal-backdrop').remove();
+            });
+    });
+
+    $('.like').on('click', function(event) {
+        event.preventDefault();
+        var isLike = event.target.previousElementSibling == null;
+        postId = $(this).parents('article.post').data('postid');
+        $.ajax({
+            method: 'POST',
+            url: urlLike,
+            data: {isLike: isLike, postId: postId, _token: token}
+        })
+            .done(function(){
+                event.target.innerText = isLike ? event.target.innerText == 'Like' ? 'You like this post' : 'like' : event.target.innerText == 'Dislike' ? 'You Dislike this post' : 'Dislike';
+                if(isLike) {
+                    event.target.nextElementSibling.innerText = 'Dislike'
+                } else {
+                    event.target.previousElementSibling.innerText = 'Like';
+                }
             });
     });
 });

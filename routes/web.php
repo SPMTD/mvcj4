@@ -22,6 +22,11 @@ Route::post('/createpost', [
     'as' => 'post.create'
 ])->middleware('auth');
 
+// Route::get('/getposts/{image}', [
+//     'uses' => 'PostController@postGetPosts',
+//     'as' => 'post.get'
+// ]);
+
 Route::get('/delete-post/{post_id}', [
     'uses' => 'PostController@getDeletePost',
     'as' => 'post.delete'
@@ -45,4 +50,9 @@ Route::post('/updatesettings', [
 Route::get('/userimage/{filename}', [
     'uses' => 'UserController@getUserImage',
     'as' => 'settings.image'
+]);
+
+Route::post('/like', [
+    'uses' => 'PostController@postLikePost',
+    'as' => 'like'
 ]);
