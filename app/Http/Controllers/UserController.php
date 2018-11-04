@@ -41,4 +41,13 @@ class UserController extends Controller {
         $file = Storage::disk('local')->get($filename);
         return new Response($file, 200);
     }
+
+    public function getAdminPage()
+    {
+        if(Auth::user()->role == "2") {
+            return view('admin');
+        } else {
+            return redirect('/');
+        }
+    }
 }

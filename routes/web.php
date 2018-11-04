@@ -17,6 +17,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/admin', [
+    'uses' => 'UserController@getAdminPage',
+    'as' => 'admin'
+])->middleware('auth');
+
 Route::post('/createpost', [
     'uses' => 'PostController@postCreatePost',
     'as' => 'post.create'

@@ -33,6 +33,9 @@
                                     </a>
     
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        @if(Auth::user()->role == '2')
+                                            <a class="dropdown-item" href="{{  route('admin')  }}">{{ __('Admin')  }}
+                                        @endif
                                         <a class="dropdown-item" href="{{  route('settings')  }}">{{ __('Settings')  }}</a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
