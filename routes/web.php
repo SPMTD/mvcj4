@@ -61,3 +61,8 @@ Route::post('/like', [
     'uses' => 'PostController@postLikePost',
     'as' => 'like'
 ]);
+
+Route::post('/onOff', [
+    'uses' => 'PostController@adminOnOff',
+    'as' => 'onOff'
+]);

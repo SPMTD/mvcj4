@@ -43,6 +43,17 @@ $(document).ready(function() {
                 }
             });
     });
+
+
+    $('.on-off').on('click', function(event) {
+        event.preventDefault();
+
+        $.ajax({
+            method: 'POST',
+            
+        })
+        
+    })
 });
 
 

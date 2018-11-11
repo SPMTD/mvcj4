@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Like;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +46,11 @@ class UserController extends Controller {
     public function getAdminPage()
     {
         if(Auth::user()->role == "2") {
-            return view('admin');
+
+            $posts = Post::orderBy('created_at', 'desc')->get();
+
+            return view('admin', ['posts' => $posts]);
+            
         } else {
             return redirect('/');
         }
