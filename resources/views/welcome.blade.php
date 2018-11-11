@@ -1,6 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+    <section class="row search">
+        <form action="/search" method="POST" role="search" style="width: 75vw;">
+            @csrf
+            <div class="input-group">
+                <input type="text" class="form-control" name="q" placeholder="Search by title or username!"> 
+                <span class="input-group-btn">
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+                </span>
+            </div>
+        </form>
+    </section>
+
     @include('includes.message-block')
     <section class="row new-post">
         <div class="col-md-6 col-md-offset-3">

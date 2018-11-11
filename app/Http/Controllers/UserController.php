@@ -55,4 +55,12 @@ class UserController extends Controller {
             return redirect('/');
         }
     }
+
+    public function adminOnOff(Request $request)
+    {
+        $post = Post::find($request['postId']);
+        $post->onOff = $request['onOff'];
+        
+        $post->update();
+    }
 }

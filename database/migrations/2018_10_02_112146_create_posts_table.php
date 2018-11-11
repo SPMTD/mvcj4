@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->text('title');
             $table->text('filename');
             $table->integer('user_id');
+            $table->boolean('onOff');
         });
     }
 

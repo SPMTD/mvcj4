@@ -63,6 +63,11 @@ Route::post('/like', [
 ]);
 
 Route::post('/onOff', [
-    'uses' => 'PostController@adminOnOff',
+    'uses' => 'UserController@adminOnOff',
     'as' => 'onOff'
+]);
+
+Route::any('/search', [
+    'uses' =>  'PostController@postSearchPost',
+    'as' => 'search'
 ]);

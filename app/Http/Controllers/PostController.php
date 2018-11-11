@@ -3,8 +3,9 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Like;
+use App\User;
 use App\Http\Controllers\Log;
-use App\Http\Controllers\Input;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -105,5 +106,19 @@ class PostController extends Controller
             $like->save();
         }
         return null;
-    }   
+    }
+    
+    public function postSearchPost(Request $request)
+    {
+        $q = Input::get('q');
+        $post = Post::where('title', 'LIKE', '%'.$q.'%')->get();
+        // $user = User::where('user', 'LIKE'. '%'.$q.'%')->get();
+
+        if(count($post) > 0) {
+            $posts = Post::orderBy('created_at', 'desc')->get();
+            return view('search', ['posts' => $posts])->withDetails($post)->withQuery($q);
+        } else {
+            return view('search')->withMessage("No posts have been found, try again");
+        }
+    }
 }
